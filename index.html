@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jornada de Parentalidade iFood</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Outfit', sans-serif; background-color: #f8f9fa; color: #1a1a1a; }
+        .item-gatilho { background: #ea1d2c; color: white; border-left: 5px solid #b31622; }
+        .item-gatilho a { color: white; text-decoration: underline; }
+        .item-apoio { background: #f4f4f4; border-left: 5px solid #d1d5db; color: #6b7280; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #ffffff; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #ea1d2c; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex items-center justify-center p-4">
+
+    <div x-data="{ step: 1, total: 6 }" class="relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl overflow-hidden min-h-[680px] flex flex-col border border-gray-100">
+        
+        <div class="px-8 pt-8 pb-4 flex justify-between items-center bg-gray-50 border-b border-gray-100">
+            <img src="https://logodownload.org/wp-content/uploads/2017/05/ifood-logo-0.png" alt="iFood" class="h-5">
+            <div class="flex space-x-2">
+                <template x-for="i in total">
+                    <div class="h-1 w-8 rounded-full transition-all duration-500" 
+                         :class="step >= i ? 'bg-red-600' : 'bg-gray-200'"></div>
+                </template>
+            </div>
+        </div>
+
+        <div class="flex-grow px-8 md:px-12 py-6 overflow-y-auto custom-scrollbar">
+            
+            <div x-show="step === 1" x-transition class="space-y-6 text-center py-10">
+                <div class="mb-8 flex justify-center">
+                    <img src="https://logodownload.org/wp-content/uploads/2017/05/ifood-logo-0.png" alt="iFood" class="h-10">
+                </div>
+                <h1 class="text-4xl font-extrabold leading-tight text-gray-900">Olá, <span class="text-red-600">FoodLover!</span></h1>
+                <p class="text-xl text-gray-700">Parabéns por este momento tão importante!</p>
+                <p class="text-gray-600 leading-relaxed max-w-md mx-auto">
+                    Estamos felizes em te receber no Programa de Parentalidade. Preparamos uma jornada de acolhimento e mimos especiais para você.
+                </p>
+                <div class="inline-block p-4 bg-red-50 rounded-2xl border border-red-100 text-sm text-red-600 font-bold shadow-inner mt-6">
+                    Complete as etapas sinalizadas para garantir o recebimento dos seus kits!
+                </div>
+            </div>
+
+            <template x-if="step >= 2 && step <= 5">
+                <div class="space-y-6">
+                    <header>
+                        <span class="text-red-600 font-bold tracking-widest uppercase text-xs">Fase 0<span x-text="step-1"></span></span>
+                        <h2 class="text-3xl font-bold text-gray-900" x-text="
+                            step === 2 ? 'Tempo de Acolher' : 
+                            step === 3 ? 'Tempo de Planejar' : 
+                            step === 4 ? 'Tempo de Cuidar' : 'Tempo de Sustentar'"></h2>
+                        <p class="text-gray-500 text-sm italic" x-text="
+                            step === 2 ? 'Da inscrição até 12 semanas' : 
+                            step === 3 ? '13 semanas até o nascimento' : 
+                            step === 4 ? 'Nascimento até o retorno' : 'Retorno + 6 meses'"></p>
+                    </header>
+
+                    <div class="space-y-3">
+                        
+                        <div class="space-y-3" x-show="step === 2">
+                            <a href="https://script.google.com/..." target="_blank" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md">
+                                <span class="text-xs font-bold uppercase opacity-80">Gatilho Mimo 01</span>
+                                <p class="font-bold text-sm">🔗 Mapeamento de Saúde (Gestante)</p>
+                            </a>
+                            <div class="p-4 item-gatilho rounded-r-xl opacity-90">
+                                <span class="text-xs font-bold uppercase opacity-80">Gatilho Mimo 01</span>
+                                <p class="font-bold text-sm">🤝 Acolhimento Social (Assistente Social)</p>
+                            </div>
+                            <a href="https://survey.lockton.com.br/..." target="_blank" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md">
+                                <span class="text-xs font-bold uppercase opacity-80">Gatilho Mimo 01</span>
+                                <p class="font-bold text-sm">🔗 Fluxo de Isenção de Copay</p>
+                            </a>
+                            <a href="#" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md"><p class="font-bold text-sm">🔗 Mentoria Gestantes / Trilha Pais</p></a>
+                            <div class="p-4 item-apoio rounded-r-xl"><p class="text-sm font-medium">📢 Liderança informada sobre inscrição</p></div>
+                        </div>
+
+                        <div class="space-y-3" x-show="step === 3">
+                            <div class="p-4 item-gatilho rounded-r-xl"><p class="font-bold text-sm">📅 Realizar Sessão de Mentoria</p></div>
+                            <a href="https://script.google.com/..." target="_blank" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md">
+                                <span class="text-xs font-bold uppercase opacity-80">Gatilho Mimo 02</span>
+                                <p class="font-bold text-sm">🔗 Novo Mapeamento de Saúde</p>
+                            </a>
+                            <a href="#" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md"><p class="font-bold text-sm">🔗 Roda de Conversa para Pais</p></a>
+                            <div class="p-4 item-apoio rounded-r-xl"><p class="text-sm">📞 Contato Assistente Social e Time Saúde</p></div>
+                            <div class="p-4 item-apoio rounded-r-xl"><p class="text-sm">📖 Recebimento do Playbook de Licença</p></div>
+                        </div>
+
+                        <div class="space-y-3" x-show="step === 4">
+                            <a href="https://beneflex.rh.digital/..." target="_blank" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md">
+                                <span class="text-xs font-bold uppercase opacity-80">Gatilho Mimo 03</span>
+                                <p class="font-bold text-sm">🔗 Inclusão do Bebê no Plano de Saúde</p>
+                            </a>
+                            <a href="https://script.google.com/..." target="_blank" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md">
+                                <span class="text-xs font-bold uppercase opacity-80">Gatilho Mimo 03</span>
+                                <p class="font-bold text-sm">🔗 Formulário de Saúde do Bebê</p>
+                            </a>
+                            <div class="p-4 item-gatilho rounded-r-xl"><p class="font-bold text-sm">🕒 Agendamento Licença Paternidade</p></div>
+                            <div class="p-4 item-apoio rounded-r-xl"><p class="text-sm italic">🔄 Reonboarding e Mentorias de Retorno</p></div>
+                        </div>
+
+                        <div class="space-y-3" x-show="step === 5">
+                            <div class="p-4 item-gatilho rounded-r-xl"><p class="font-bold text-sm">🎓 Última Sessão de Mentoria</p></div>
+                            <a href="https://script.google.com/..." target="_blank" class="block p-4 item-gatilho rounded-r-xl transition hover:bg-red-700 hover:shadow-md">
+                                <p class="font-bold text-sm">🔗 Mapeamento Final (Pais e Gestantes)</p>
+                            </a>
+                            <div class="p-4 item-apoio rounded-r-xl"><p class="text-sm">🔒 Encerramento do Acolhimento Social</p></div>
+                            <div class="p-4 item-apoio rounded-r-xl"><p class="text-sm font-bold text-red-600 uppercase">👋 Despedida do Programa</p></div>
+                        </div>
+
+                    </div>
+
+                    <footer class="mt-8 pt-4 border-t border-gray-100 grid grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
+                            <div class="w-3 h-3 bg-red-600 border border-white rounded shadow-sm"></div>
+                            <span class="text-[10px] text-gray-700 font-bold uppercase">Item Gatilho (Mimos)</span>
+                        </div>
+                        <div class="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
+                            <div class="w-3 h-3 bg-gray-200 border border-gray-300 rounded shadow-sm"></div>
+                            <span class="text-[10px] text-gray-500 font-bold uppercase">Item de Apoio</span>
+                        </div>
+                    </footer>
+                </div>
+            </template>
+
+            <div x-show="step === 6" x-transition class="text-center space-y-8 py-4 flex flex-col items-center h-full justify-center">
+                <div class="relative inline-block group">
+                    <img src="https://images.unsplash.com/photo-1510154221590-ff63e90a136f?auto=format&fit=crop&q=80&w=600" 
+                         alt="Família" 
+                         class="w-full max-w-sm h-64 object-cover rounded-[2rem] shadow-xl transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-red-600/10 rounded-[2rem]"></div>
+                </div>
+                
+                <div class="space-y-4">
+                    <h2 class="text-4xl font-black italic tracking-tighter italic text-gray-950">#GenteVemPrimeiro</h2>
+                    <p class="text-gray-600 max-w-sm mx-auto">
+                        Porque no iFood, cuidamos e construímos o futuro lado a lado. Estamos com você nessa jornada!
+                    </p>
+                </div>
+                
+                <p class="text-xs font-bold text-red-600 tracking-widest uppercase mt-6 pt-4 border-t border-gray-100 w-full">Qualquer dúvida, estamos à disposição!</p>
+            </div>
+
+        </div>
+
+        <div class="p-8 bg-gray-50 flex justify-between items-center border-t border-gray-100">
+            <button 
+                @click="step > 1 ? step-- : null" 
+                class="text-gray-500 font-black hover:text-red-600 transition uppercase text-xs tracking-widest disabled:opacity-0"
+                :disabled="step === 1">
+                Anterior
+            </button>
+            
+            <button 
+                @click="step < total ? step++ : step = 1" 
+                class="bg-red-600 hover:bg-red-700 text-white px-12 py-4 rounded-full font-black text-xs tracking-[0.2em] shadow-lg transition-all uppercase active:scale-95">
+                <span x-text="step === total ? 'Reiniciar' : 'Continuar'"></span>
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>
